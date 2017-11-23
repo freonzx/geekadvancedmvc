@@ -9,9 +9,43 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link rel="stylesheet" type="text/css" href="css/geekadvanced.css">
+        <title>Geek Advanced Shop</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        
+
+            <div id="indexLeftColumn">
+                <div id="welcomeText">
+                    <p>[ welcome text ]</p>
+                </div>
+            </div>
+
+            <div id="indexRightColumn">
+                <h2>Categorias:</h2>
+
+                <div class="categoryBox">
+                    <a href="#">
+                        <span class="categoryLabelText">Eletronicos</span>
+                    </a>
+                </div>
+                <div class="categoryBox">
+                    <a href="#">
+                        <span class="categoryLabelText">Livros</span>
+                    </a>
+                </div>
+                <div class="categoryBox">
+                    <a href="#">
+                        <span class="categoryLabelText">Games</span>
+                    </a>
+                </div>
+                <div class="categoryBox">
+                    <a href="#">
+                        <span class="categoryLabelText">Filmes</span>
+                    </a>
+                </div>
+            </div>
+
+            
     </body>
 </html>
