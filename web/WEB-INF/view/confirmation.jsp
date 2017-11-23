@@ -4,14 +4,30 @@
     Author     : root
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<div id="singleColumn">
+
+    <p id="confirmationText">
+        [ text ]
+        <br><br>
+        [ order reference number ]
+    </p>
+
+    <div class="summaryColumn" >
+
+        <table id="orderSummaryTable" class="detailsTable" >
+            <tr class="header">
+                <th style="padding:10px">[ order summary table ]</th>
+            </tr>
+        </table>
+
+    </div>
+
+    <div class="summaryColumn" >
+
+        <table id="deliveryAddressTable" class="detailsTable">
+            <tr class="header">
+                <th style="padding:10px">[ customer details ]</th>
+            </tr>
+        </table>
+    </div>
+</div>

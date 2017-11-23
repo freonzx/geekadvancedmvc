@@ -22,7 +22,8 @@
             </div>
 
             <div id="indexRightColumn">
-                <h2>Categorias:</h2>
+                <p id="Categorias">[ Categorias ]<p>
+                
 
                 <div class="categoryBox">
                     <a href="#">
