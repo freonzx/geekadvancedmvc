@@ -14,4 +14,11 @@
             <include-coda>/WEB-INF/jspf/footer.jspf</include-coda>
         </jsp-property-group>
     </jsp-config>
+    <resource-ref>
+        <description>Conecta a database pra aplicacao</description>
+        <res-ref-name>jdbc/geekadvanced</res-ref-name>
+        <res-type>javax.sql.ConnectionPoolDataSource</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+    </resource-ref>
 </web-app>
