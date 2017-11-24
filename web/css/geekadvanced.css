@@ -34,7 +34,8 @@ table {
 
 
 /* general styles */
-#main { background: #eee }
+#main { background: #eee;
+}
 
 #singleColumn {
     margin: 20px 30px;
@@ -80,7 +81,7 @@ table {
 #logoText {
     float: left;
     margin: 20px 0 0 70px;
-    
+
     font-family: 'American Typewriter', Courier, monospace;
     font-size: 50px;
     color: #ffffff;
@@ -148,12 +149,14 @@ table {
 #categoryLeftColumn {
     width: 185px;
     float: left;
-    margin-top: 25px;
+    /*margin-top: 25px;*/
+    margin:25px 0px 0px 30px;
     padding-left: 15px;
 }
 
 #categoryRightColumn {
-    margin-top: 10px;
+    /*margin-top: 10px;*/
+    margin:20px 0px 0px 150px;
     width: 650px;
     float: left;
 }
@@ -191,9 +194,9 @@ table {
 }
 
 .categoryText {
-    line-height: 25px;
-    font-size: x-large;
-    
+    line-height: 23px;
+    font-size: larger;
+
 }
 
 #productTable { width: 600px }
@@ -268,4 +271,15 @@ table {
     margin-left: 15%;
     text-align: left;
     height: 200px;
+}
+
+/* Testando */
+
+.H-preco {
+    width: 143px;
+    font-family: 'Swis721_B';
+    font-size: 20px;
+    color: #2c6eb4;
+    margin: 0;
+    text-align: center;
 }
