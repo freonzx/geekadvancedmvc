@@ -41,7 +41,7 @@ table {
     text-align: left;
 }
 
-.lightBlue { background-color: #edf8f7 }
+.lightBlue { background-color: #ccc }
 
 .white { background-color: #fff }
 
@@ -162,11 +162,11 @@ table {
     margin: 15px 22px;
     padding: 13px;
     display: block;
-    background-color: #d3ede8;
+    background-color: #ccc;
 }
 
 #selectedCategory {
-    background-color: #b2d2d2;
+    background-color: #fff;
     margin-left: 10px;
     width: 139px;
 }
@@ -175,7 +175,7 @@ table {
     margin: -34px 180px 0 0;
     font-size: x-large;
     float: right;
-    background-color: #f5eabe;
+    background-color: #fff;
     padding: 7px;
 }
 

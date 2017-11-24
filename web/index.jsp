@@ -1,3 +1,5 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%-- 
     Document   : index
     Created on : Nov 23, 2017, 8:39:09 AM
@@ -6,6 +8,10 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<sql:query var="categorias" dataSource="jdbc/geekadvanced">
+    SELECT * FROM categoria
+</sql:query>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -24,27 +30,17 @@
             <div id="indexRightColumn">
                 <p id="Categorias">[ Categorias ]<p>
                 
-
-                <div class="categoryBox">
-                    <a href="#">
-                        <span class="categoryLabelText">Eletronicos</span>
+                <c:forEach var="categoria" items="${categorias.rows}">
+                    
+                    <div class="categoryBox">
+                    <a href="categoria?${categoria.id}">
+                        <span class="categoryLabelText">${categoria.nome}</span>
+                        <img src="${initParam.categoriasImagePath}${categoria.nome}.jpg" alt="${categoria.nome}" height="176" width="212">
                     </a>
                 </div>
-                <div class="categoryBox">
-                    <a href="#">
-                        <span class="categoryLabelText">Livros</span>
-                    </a>
-                </div>
-                <div class="categoryBox">
-                    <a href="#">
-                        <span class="categoryLabelText">Games</span>
-                    </a>
-                </div>
-                <div class="categoryBox">
-                    <a href="#">
-                        <span class="categoryLabelText">Filmes</span>
-                    </a>
-                </div>
+                </c:forEach>
+ 
+              
             </div>
 
             

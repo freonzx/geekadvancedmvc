@@ -18,7 +18,7 @@
         <h1>Hello World!</h1>
         
         <sql:query var="result" dataSource="jdbc/geekadvanced">
-            SELECT * FROM produto
+            SELECT * FROM categoria, produto WHERE categoria.id = produto.categoria_id
         </sql:query>
     
         <table border="1">
