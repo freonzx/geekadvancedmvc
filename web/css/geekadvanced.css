@@ -48,7 +48,7 @@ table {
 
 .bubble {
     font-weight: bold;
-    background-color: #f5eabe;
+    /*background-color: #D3D3D3;*/
     padding: 5px;
     color: inherit;
 }
@@ -58,7 +58,7 @@ table {
 .smallText { font-size: small }
 
 .header {
-    background-color: #c3e3e0;
+    background-color: #ffff;
     height: 30px;
 }
 
@@ -225,10 +225,10 @@ table {
 
 /* checkout page styles */
 #checkoutTable {
-    width: 360px;
-    background-color: #f5eabe;
+    width: 400px;
+    background-color: #ffff;
     float: left;
-    height: 280px;
+    height: 350px;
 }
 
 #infoBox {
@@ -241,7 +241,7 @@ table {
     padding: 10px;
     margin: 10px 0;
     height: 128px;
-    background-color: #c3e3e0;
+    background-color: #ffff;
 }
 
 
@@ -282,4 +282,8 @@ table {
     color: #2c6eb4;
     margin: 0;
     text-align: center;
+}
+
+.prodImg {
+    max-height: 180px;
 }

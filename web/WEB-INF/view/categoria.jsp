@@ -8,29 +8,14 @@
 
 <body>
 
-    <sql:query var="categorias" dataSource="jdbc/geekadvanced">
-        SELECT * FROM categoria
-    </sql:query>
-
-    <sql:query var="categoriaAtual" dataSource="jdbc/geekadvanced">
-        SELECT nome FROM categoria WHERE id = ?
-        <sql:param value="${pageContext.request.queryString}" />
-    </sql:query>
-
-    <sql:query var="produtosCategoria" dataSource="jdbc/geekadvanced">
-        SELECT * FROM produto WHERE categoria_id = ?
-        <sql:param value="${pageContext.request.queryString}" />
-    </sql:query>
-
-
     <div id="categoryLeftColumn">
-        <c:forEach var="categoria" items="${categorias.rows}">
+        <c:forEach var="categoria" items="${categorias}">
 
             <c:choose>
                 <c:when test="${categoria.id == pageContext.request.queryString}">
                     <div class="categoryButton" id="selectedCategory">
                         <span class="categoryText">
-                            ${categoria.nome}
+                            ${selectedCategory.nome}
                         </span>
                     </div>
                 </c:when>
@@ -50,13 +35,13 @@
 
 
     <div id="categoryRightColumn">
-        <p id="categoryTitle">[ ${categoriaAtual.rows[0].nome} ]</p>
+        <p id="categoryTitle">[ ${selectedCategory.nome} ]</p>
 
         <table id="productTable">
-            <c:forEach var="produto" items="${produtosCategoria.rows}" varStatus="iter">
+            <c:forEach var="produto" items="${categoryProducts}" varStatus="iter">
                 <tr class="${((iter.index % 2) == 0) ? 'lightBlue' : 'white'}">
                     <td>
-                        <img src="${initParam.produtosImagePath}${produto.nome}.png" alt="${produto.nome}}">
+                        <img src="${initParam.produtosImagePath}${produto.nome}.jpeg" class="prodImg" alt="${produto.nome}}">
                     </td>
                     <td>
                         ${produto.nome}
@@ -66,7 +51,7 @@
                     <td class="H-preco">R$ ${produto.preco}</td>
                     <td>
                         <form action="addCarrinho" method="post">
-                            <input type="hidden" name="produtoId" value="${produto.nome}">
+                            <input type="hidden" name="productId" value="${produto.id}">
                             <input type="submit" class="btn btn-info" value="Comprar">
                         </form>
                     </td>

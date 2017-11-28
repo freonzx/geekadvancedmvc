@@ -8,9 +8,10 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<sql:query var="categorias" dataSource="jdbc/geekadvanced">
+<!--ANTIGO METODO JSTL-->
+<%--<sql:query var="categorias" dataSource="jdbc/geekadvanced">
     SELECT * FROM categoria
-</sql:query>
+</sql:query>--%>
 
 <html>
     <head>
@@ -23,14 +24,15 @@
 
             <div id="indexLeftColumn">
                 <div id="welcomeText">
-                    <p>[ welcome text ]</p>
+                    <p><h4>[ Bem vindo a Geek Advanced ]</h4>
+                    <br> Utilize as categorias ao lado para encontrar produtos e adiciona-los ao seu carrinho após isso finalize a compra</p>
                 </div>
             </div>
 
             <div id="indexRightColumn">
                 <p id="Categorias">[ Categorias ]<p>
                 
-                <c:forEach var="categoria" items="${categorias.rows}">
+                <c:forEach var="categoria" items="${categorias}">
                     
                     <div class="categoryBox">
                     <a href="categoria?${categoria.id}">

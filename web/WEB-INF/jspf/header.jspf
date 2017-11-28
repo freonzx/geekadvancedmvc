@@ -1,4 +1,7 @@
 <%-- any content can be specified here e.g.: --%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <%@ page pageEncoding="UTF-8" %>
 <html>
     <head>
@@ -19,7 +22,55 @@
             <div id="header">
                 <div id="widgetBar">
                     <div class="headerWidget">
-                        [ shopping cart widget ]
+                        <c:if test="${!empty cart && cart.numberOfItems != 0 &&
+
+                                      !fn:contains(pageContext.request.servletPath,'/checkout') &&
+                                      requestScope['javax.servlet.forward.servlet_path'] ne '/checkout' &&
+
+                                      !fn:contains(pageContext.request.servletPath,'/cart') &&
+                                      requestScope['javax.servlet.forward.servlet_path'] ne '/carrrinho'}">
+
+                            <a href="checkout" class="bubble">
+                                Finalizar Compra &#x279f;
+                            </a>
+                        </c:if>
+                    </div>
+
+                    <div class="headerWidget" id="viewCart">
+                        <img src="img/cart.gif" alt="icone carrinho" id="cart">
+
+                        <%-- Se a propriedade 'numberOfItems' não existir, ou se o número de itens
+                              no carrinho é 0, saída '0', caso contrário, a saída 'numberOfItems' --%>
+                        <span class="horizontalMargin">
+                            <c:choose>
+                                <c:when test="${cart.numberOfItems == null}">
+                                    0
+                                </c:when>
+                                <c:otherwise>
+                                    ${cart.numberOfItems}
+                                </c:otherwise>
+                            </c:choose>
+
+                            <%-- Handle singular/plural forms of 'item' --%>
+                            <c:choose>
+                                <c:when test="${cart.numberOfItems == 1}">
+                                    item
+                                </c:when>
+                                <c:otherwise>
+                                    items
+                                </c:otherwise>
+                            </c:choose>
+                        </span>
+
+                        <c:if test="${!empty cart && cart.numberOfItems != 0 &&
+
+                                      !fn:contains(pageContext.request.servletPath,'/carrinho') &&
+                                      requestScope['javax.servlet.forward.servlet_path'] ne '/carrinho'}">
+
+                            <a href="verCarrinho" class="bubble">
+                                Ver Carrinho
+                            </a>
+                        </c:if>
                     </div>
 
                 </div>
