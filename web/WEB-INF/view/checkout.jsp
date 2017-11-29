@@ -59,6 +59,22 @@
                     
                 </td>
             </tr>
+            
+            <tr>
+                <td><label for="cityRegion">Cidade:</label></td>
+                <td class="inputField">
+                    <input type="text"
+                           size="31"
+                           maxlength="45"
+                           id="address"
+                           name="cityRegion"
+                           value="${param.cityRegion}">
+
+                    <br>
+                    
+                </td>
+            </tr>
+            
             <tr>
                 <td><label for="creditcard">Número de Cartão de Crédito:</label></td>
                 <td class="inputField">
@@ -68,8 +84,8 @@
                            id="creditcard"
                            name="creditcard"
                            value="${param.creditcard}">
-                    <input type="radio" name="tipocompra" value="male"> A Vista<br>
-                    <input type="radio" name="tipocompra" value="female"> Parcelado<br>
+                    <input type="radio" name="tipocompra" value="avista"> A Vista<br>
+                    <input type="radio" name="tipocompra" value="parcelado"> Parcelado<br>
                 </td>
             </tr>
             <tr>

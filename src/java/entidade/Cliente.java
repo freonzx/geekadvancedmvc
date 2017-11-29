@@ -70,7 +70,7 @@ public class Cliente implements Serializable {
     private String endereco;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 2)
+    @Size(min = 1, max = 45)
     @Column(name = "cidade")
     private String cidade;
     @Basic(optional = false)

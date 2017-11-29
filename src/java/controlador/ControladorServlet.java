@@ -10,6 +10,7 @@ import entidade.Categoria;
 import entidade.Produto;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import session.CategoriaFacade;
+import session.ClienteFacade;
+import session.OrderManager;
 import session.ProdutoFacade;
 
 /**
@@ -46,12 +49,17 @@ public class ControladorServlet extends HttpServlet {
     private CategoriaFacade categoryFacade;
     @EJB
     private ProdutoFacade productFacade;
+    @EJB
+    private OrderManager orderManager;
+    @EJB
+    private ClienteFacade clienteFacade;
 
     @Override
     public void init() throws ServletException {
-        
+
         // Guarda lista de categorias no servlet
         getServletContext().setAttribute("categorias", categoryFacade.findAll());
+        getServletContext().setAttribute("clientes", clienteFacade.findAll());
     }
 
     @Override
@@ -68,7 +76,7 @@ public class ControladorServlet extends HttpServlet {
             if (categoriaId != null) {
                 // pega categoria selecionada
                 Categoria selectedCategory = categoryFacade.find(Short.parseShort(categoriaId));
-                
+
                 request.setAttribute("selectedCategory", selectedCategory);
                 //Buscar produtos da categoria selecionada
                 Collection<Produto> categoryProducts = selectedCategory.getProdutoCollection();
@@ -152,9 +160,43 @@ public class ControladorServlet extends HttpServlet {
 
             // se a ação de compra for chamada
         } else if (userPath.equals("/comprar")) {
-            // TODO: Implement purchase action
 
-            userPath = "/confirmation";
+            if (cart != null) {
+
+                String name = request.getParameter("name");
+                String email = request.getParameter("email");
+                String phone = request.getParameter("phone");
+                String address = request.getParameter("address");
+                String cityRegion = request.getParameter("cityRegion");
+                String ccNumber = request.getParameter("creditcard");
+                String tipocompra = request.getParameter("tipocompra");
+                int orderId = orderManager.placeOrder(name, email, phone, address, cityRegion, ccNumber, cart, tipocompra);
+                
+                if (orderId != 0) {
+
+                        // dissociate shopping cart from session
+                        cart = null;
+
+                        // end session
+                        session.invalidate();
+
+                        // get order details
+                        Map orderMap = orderManager.getOrderDetails(orderId);
+
+                        // place order details in request scope
+                        request.setAttribute("customer", orderMap.get("customer"));
+                        request.setAttribute("products", orderMap.get("products"));
+                        request.setAttribute("orderRecord", orderMap.get("orderRecord"));
+                        request.setAttribute("orderedProducts", orderMap.get("orderedProducts"));
+
+                        userPath = "/confirmation";
+
+                    // otherwise, send back to checkout page and display error
+                    } else {
+                        userPath = "/checkout";
+                        request.setAttribute("orderFailureFlag", true);
+                    }
+            }
         }
 
         // RequestDispatcher para encaminhar o pedido internamente

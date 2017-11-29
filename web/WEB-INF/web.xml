@@ -19,6 +19,7 @@
         <jsp-property-group>
             <display-name>header and footer config</display-name>
             <url-pattern>/index.jsp</url-pattern>
+            <url-pattern>/clientes.jsp</url-pattern>
             <url-pattern>/WEB-INF/view/*</url-pattern>
             <include-prelude>/WEB-INF/jspf/header.jspf</include-prelude>
             <include-coda>/WEB-INF/jspf/footer.jspf</include-coda>

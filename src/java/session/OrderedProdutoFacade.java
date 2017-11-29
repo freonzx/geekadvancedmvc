@@ -6,6 +6,7 @@
 package session;
 
 import entidade.OrderedProduto;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +28,10 @@ public class OrderedProdutoFacade extends AbstractFacade<OrderedProduto> {
 
     public OrderedProdutoFacade() {
         super(OrderedProduto.class);
+    }
+    
+    public List<OrderedProduto> findByOrderId(Object id) {
+        return em.createNamedQuery("OrderedProduto.findByClientePedidoId").setParameter("clientePedidoId", id).getResultList();
     }
     
 }

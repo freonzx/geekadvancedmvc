@@ -32,12 +32,12 @@
             <c:forEach var="orderedProduct" items="${orderedProducts}" varStatus="iter">
 
                 <tr class="${((iter.index % 2) != 0) ? 'lightBlue' : 'white'}">
-                    <td>${products[iter.index].name}</td>
+                    <td>${products[iter.index].nome}</td>
                     <td class="quantityColumn">
                         ${orderedProduct.quantity}
                     </td>
                     <td class="confirmationPriceColumn">
-                        R$ ${products[iter.index].price * orderedProduct.quantity}
+                        R$ ${products[iter.index].preco * orderedProduct.quantity}
                     </td>
                 </tr>
 
@@ -47,12 +47,12 @@
 
             <tr class="lightBlue">
                 <td colspan="2" id="deliverySurchargeCellLeft"><strong>Frete:</strong></td>
-                <td id="deliverySurchargeCellRight">R$ ${initParam.deliverySurcharge}</td>
+                <td id="deliverySurchargeCellRight">R$ TBD</td>
             </tr>
 
             <tr class="lightBlue">
                 <td colspan="2" id="totalCellLeft"><strong>Total:</strong></td>
-                <td id="totalCellRight">R$ ${orderRecord.amount}</td>
+                <td id="totalCellRight">R$ ${orderRecord.quantidade}</td>
             </tr>
 
             <tr class="lightBlue"><td colspan="3" style="padding: 0 20px"><hr></td></tr>
@@ -77,14 +77,14 @@
                 <td colspan="3" class="lightBlue">
                     ${customer.name}
                     <br>
-                    ${customer.address}
+                    ${customer.endereco}
                     <br>
-                    Cidade ${customer.cityRegion}
+                    Cidade ${customer.cidade}
                     <br>
                     <hr>
                     <strong>Email:</strong> ${customer.email}
                     <br>
-                    <strong>Telefone:</strong> ${customer.phone}
+                    <strong>Telefone:</strong> ${customer.telefone}
                 </td>
             </tr>
         </table>
