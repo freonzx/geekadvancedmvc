@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import session.CategoriaFacade;
 import session.ClienteFacade;
+import session.ClientePedidoFacade;
 import session.OrderManager;
 import session.ProdutoFacade;
 
@@ -53,6 +54,8 @@ public class ControladorServlet extends HttpServlet {
     private OrderManager orderManager;
     @EJB
     private ClienteFacade clienteFacade;
+    @EJB
+    private ClientePedidoFacade pedidoFacade;
 
     @Override
     public void init() throws ServletException {
@@ -60,6 +63,7 @@ public class ControladorServlet extends HttpServlet {
         // Guarda lista de categorias no servlet
         getServletContext().setAttribute("categorias", categoryFacade.findAll());
         getServletContext().setAttribute("clientes", clienteFacade.findAll());
+        getServletContext().setAttribute("pedidos", pedidoFacade.findAll());
     }
 
     @Override
