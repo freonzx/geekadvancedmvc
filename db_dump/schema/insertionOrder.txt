@@ -1,0 +1,5 @@
+categoria
+cliente
+cliente_pedido
+produto
+ordered_produto

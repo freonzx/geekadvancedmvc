@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<database name="geekadvanced" type="MySQL - 5.5.5-10.1.26-MariaDB-1">
+   <tables>
+      <table name="categoria" numRows="4" remarks="contains produto categories, e.g., dairy, meats, etc." type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED">
+            <child column="categoria_id" foreignKey="fk_produto_categoria" implied="false" onDeleteCascade="false" table="produto"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="nome" nullable="false" remarks="" size="45" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="cliente" numRows="12" remarks="maintains cliente details" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="cliente_id" foreignKey="fk_cliente_pedido_cliente" implied="false" onDeleteCascade="false" table="cliente_pedido"/>
+            <parent column="id" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="cliente_pedido"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="false" remarks="" size="45" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="email" nullable="false" remarks="" size="45" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="telefone" nullable="false" remarks="" size="45" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="endereco" nullable="false" remarks="" size="45" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="5" name="cidade" nullable="false" remarks="" size="45" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="6" name="cc_numero" nullable="false" remarks="" size="19" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="cliente_pedido" numRows="12" remarks="maintains cliente order details" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="id" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="cliente"/>
+            <child column="cliente_pedido_id" foreignKey="fk_ordered_produto_cliente_pedido" implied="false" onDeleteCascade="false" table="ordered_produto"/>
+            <child column="id" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="produto"/>
+         </column>
+         <column autoUpdated="false" digits="2" id="1" name="quantidade" nullable="false" remarks="" size="6" type="DECIMAL"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="0" id="2" name="date_created" nullable="false" remarks="" size="19" type="TIMESTAMP"/>
+         <column autoUpdated="false" digits="0" id="3" name="confirmation_number" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="4" name="cliente_id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_cliente_pedido_cliente" implied="false" onDeleteCascade="false" table="cliente"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_cliente_pedido_cliente" unique="false">
+            <column ascending="true" name="cliente_id"/>
+         </index>
+      </table>
+      <table name="ordered_produto" numRows="12" remarks="matches produtos with cliente orders and records their quantity" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="cliente_pedido_id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_ordered_produto_cliente_pedido" implied="false" onDeleteCascade="false" table="cliente_pedido"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="produto_id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_ordered_produto_produto" implied="false" onDeleteCascade="false" table="produto"/>
+         </column>
+         <column autoUpdated="false" defaultValue="1" digits="0" id="2" name="quantity" nullable="false" remarks="" size="5" type="SMALLINT UNSIGNED"/>
+         <primaryKey column="cliente_pedido_id" sequenceNumberInPK="1"/>
+         <primaryKey column="produto_id" sequenceNumberInPK="2"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="cliente_pedido_id"/>
+            <column ascending="true" name="produto_id"/>
+         </index>
+         <index name="fk_ordered_produto_cliente_pedido" unique="false">
+            <column ascending="true" name="cliente_pedido_id"/>
+         </index>
+         <index name="fk_ordered_produto_produto" unique="false">
+            <column ascending="true" name="produto_id"/>
+         </index>
+      </table>
+      <table name="produto" numRows="25" remarks="contains produto details" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="produto_id" foreignKey="fk_ordered_produto_produto" implied="false" onDeleteCascade="false" table="ordered_produto"/>
+            <parent column="id" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="cliente_pedido"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="nome" nullable="false" remarks="" size="45" type="VARCHAR"/>
+         <column autoUpdated="false" digits="2" id="2" name="preco" nullable="false" remarks="" size="5" type="DECIMAL"/>
+         <column autoUpdated="false" digits="0" id="3" name="description" nullable="true" remarks="" size="255" type="TINYTEXT"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="0" id="4" name="last_update" nullable="false" remarks="" size="19" type="TIMESTAMP"/>
+         <column autoUpdated="false" digits="0" id="5" name="categoria_id" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED">
+            <parent column="id" foreignKey="fk_produto_categoria" implied="false" onDeleteCascade="false" table="categoria"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_produto_categoria" unique="false">
+            <column ascending="true" name="categoria_id"/>
+         </index>
+      </table>
+   </tables>
+</database>
